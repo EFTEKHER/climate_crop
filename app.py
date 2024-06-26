@@ -43,13 +43,13 @@ def predict():
 def results():
     # Generate and save the performance graph
     plt.figure(figsize=(12, 6))
-    sns.barplot(x='Model', y='R2 Score', data=results_df, palette='viridis')
+    sns.barplot(x='Model', y='R2 Score', data=results_df, palette='viridis', hue='Model', legend=False)
     plt.title('R2 Score for Different Models')
     plt.savefig('static/images/r2_score.png')
     plt.clf()
     
     plt.figure(figsize=(12, 6))
-    sns.barplot(x='Model', y='MAE', data=results_df, palette='viridis')
+    sns.barplot(x='Model', y='MAE', data=results_df, palette='viridis', hue='Model', legend=False)
     plt.title('Mean Absolute Error for Different Models')
     plt.savefig('static/images/mae.png')
     plt.clf()
