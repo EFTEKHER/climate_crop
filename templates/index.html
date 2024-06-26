@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=gTN9eaZkKLFI&format=png&color=000000" type="image/x-icon">
+    <title>Climate Yield Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+       
+      </style>
+</head>
+<body class="bg-slate-700 text-white">
+    <header class="text-center py-4">
+        <h1 class="text-3xl">Climate Yield Prediction</h1>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-4">
+        <form action="/predict" method="post" class="bg-slate-800 p-4 rounded">
+            <div class="mb-4">
+                <label for="Item" class="block bg-slate-700  text-sm font-medium">Item</label>
+                <select name="Item" id="Item" class="mt-1 block bg-slate-700 w-full">
+                    <option value="0" class="bg-slate-700 ">Cassava</option>
+                    <option value="1"  class="bg-slate-700 ">Maize</option>
+                    <option value="2"  class="bg-slate-700 ">Plantains and others</option>
+                    <option value="3"  class="bg-slate-700 ">Potatoes</option>
+                    <option value="4"  class="bg-slate-700 ">Rice, paddy</option>
+                    <option value="5" class="bg-slate-700 ">Sorghum</option>
+                    <option value="6" class="bg-slate-700 ">Soybeans</option>
+                    <option value="7" class="bg-slate-700 ">Sweet potatoes</option>
+                    <option value="8" class="bg-slate-700 ">Wheat</option>
+                    <option value="9" class="bg-slate-700 ">Yams</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="Year" class="block text-sm font-medium">Year</label>
+                <input type="number" name="Year" id="Year" class="mt-1 block w-full text-black" required>
+            </div>
+            <div class="mb-4">
+                <label for="average_rain_fall_mm_per_year" class="block text-sm font-medium">Average Rainfall (mm/year)</label>
+                <input type="number" step="0.01" name="average_rain_fall_mm_per_year" id="average_rain_fall_mm_per_year" class="mt-1 block w-full text-black" required>
+            </div>
+            <div class="mb-4">
+                <label for="pesticides_tonnes" class="block text-sm font-medium">Pesticides (tonnes)</label>
+                <input type="number" step="0.01" name="pesticides_tonnes" id="pesticides_tonnes" class="mt-1 block w-full text-black " required>
+            </div>
+            <div class="mb-4">
+                <label for="avg_temp" class="block text-sm font-medium">Average Temperature</label>
+                <input type="number" step="0.01" name="avg_temp" id="avg_temp" class="mt-1 block w-full text-black" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Predict</button>
+        </form>
+        
+        {% if predictions %}
+        <div class="mt-8">
+            <h2 class="text-2xl mb-4">Prediction Results </h2>
+            <h2 class="text-xl mb-4">This is the percentage of the produced crop yield.</h2>
+            <h2 class="text-sm mb-4">(hg/ha_yield)</h2>
+            <ul>
+                {% for model, prediction in predictions.items() %}
+                <li>{{ model }}: {{ prediction }}</li>
+                {% endfor %}
+            </ul>
+            <button onclick="window.location.href='/'" class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">Submit New Data</button>
+        </div>
+        {% endif %}
+        
+        <div class="mt-8">
+            <a href="/results" class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded block text-center">View Analysis</a>
+        </div>
+    </main>
+        <div class="bg-slate-700 grid md:grid-cols-1 lg:grid-cols-3 p-10">
+            <div class="rounded-full h-50 w-50 bg-purple-700">
+                <img src="../static/images/ml_one.png" alt="" class="h-30 w-50 animate-float-up-down">
+            </div>
+            <div class="bg-slate-800 sm:col-span-1 lg:col-span-2 mx-auto p-10 rounded-xl shadow-slate-900 hover:scale-105" >
+
+            <h2 >Our Crop Yield Prediction Model leverages advanced machine learning algorithms to forecast crop yields by analyzing various environmental and agricultural factors such as average rainfall, pesticide usage, and temperature. The model employs five algorithms: Decision Tree, Random Forest, XGBoost, Extra Trees, and AdaBoost, each offering different strengths in prediction accuracy and error minimization. Performance metrics, including the R2 Score (measuring prediction accuracy) and Mean Absolute Error (MAE, indicating the average prediction error), ensure the model's reliability.Users can easily input the type of crop, the year, and relevant environmental data to generate predictions. For example, by entering the crop type (e.g., Maize), the year (e.g., 2023), average rainfall, pesticide usage, and average temperature, the model will predict the crop yield for that year. This tool is designed to support farmers and agricultural planners in making informed, data-driven decisions to optimize crop yields and improve agricultural productivity. The model also provides visualizations, such as histograms, box plots, and correlation matrices, to help users understand the data and the model's performance better.</h2>  
+            </div>
+
+        </div>
+    <footer class="text-center py-4 bottom-0">
+        <p>Model created by Eftekher Ali Efte | <a href="https://www.linkedin.com/in/eftekher-ali-efte-589a82299/" class="text-blue-400">LinkedIn</a> | <a href="https://eftekheralieftecom.vercel.app/" class="text-blue-400">Website</a></p>
+    </footer>
+</body>
+</html>

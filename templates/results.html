@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Analysis</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=gTN9eaZkKLFI&format=png&color=000000" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: '#da373d',
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body class="bg-slate-700 text-white">
+    <header class="text-center py-4">
+        <h1 class="text-3xl">Model Analysis</h1>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-4">
+
+        <div class="mb-8">
+            
+            <img src="../static/images/avg_temperature.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            
+            <img src="../static/images/avg_rain_fall.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            
+            <img src="../static/images/avg_pesticide.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            
+            <img src="../static/images/hg_ha_fiel d.png" alt="R2 Score Graph">
+        </div>
+
+        <div class="mb-8">
+            
+            <img src="../static/images/a.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            
+            <img src="../static/images/b.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            
+            <img src="../static/images/c.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            
+            <img src="../static/images/d.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            
+            <img src="../static/images/e.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            
+            <img src="../static/images/f.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            
+            <img src="../static/images/g.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            
+            <img src="../static/images/item_vs_hg_ha_yield.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            <h2 class="text-2xl mb-4">R2 Score</h2>
+            <img src="../static/images/r2_score.png" alt="R2 Score Graph">
+        </div>
+        <div class="mb-8">
+            <h2 class="text-2xl mb-4">Mean Absolute Error</h2>
+            <img src="../static/images/mae.png" alt="MAE Graph">
+        </div>
+        <table class="w-full bg-slate-800 rounded">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b border-gray-200">Model</th>
+                    <th class="py-2 px-4 border-b border-gray-200">R2 Score</th>
+                    <th class="py-2 px-4 border-b border-gray-200">MAE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in results_df.iterrows() %}
+                <tr>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ row['Model'] }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ row['R2 Score'] }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ row['MAE'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer class="text-center py-4 bottom-0 fixed w-full">
+        <p>Model created by Eftekher Ali Efte | <a href="https://www.linkedin.com/in/eftekher-ali-efte-589a82299/" class="text-blue-400">LinkedIn</a> | <a href="https://eftekheralieftecom.vercel.app/" class="text-blue-400">Website</a></p>
+    </footer>
+</body>
+</html>

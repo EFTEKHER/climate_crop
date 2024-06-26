@@ -1,0 +1,19 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+header, footer {
+    background-color: #1e293b;
+}
+ /* Define the animation */
+ @keyframes floatUpDown {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  .animate-float-up-down {
+    animation: floatUpDown 3s ease-in-out infinite; /* Adjust animation duration as needed */
+  }
