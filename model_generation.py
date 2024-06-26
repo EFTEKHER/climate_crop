@@ -11,8 +11,8 @@ import joblib
 # Load the dataset
 data = pd.read_csv("./climate-ds.csv")
 
-# Take a sample of the dataset (10% of the data)
-sample_data = data.sample(frac=0.3, random_state=49)
+
+sample_data = data
 
 # Drop unnecessary columns ('Unnamed: 0', 'Area')
 sample_data.drop(['Unnamed: 0', 'Area'], axis=1, inplace=True)
@@ -64,4 +64,4 @@ for model_name, model in models.items():
 results_df = pd.DataFrame(results)
 
 # Save the models, label encoder, and results with joblib using compression
-joblib.dump((best_estimators, label_encoder, results_df), 'models.pkl', compress=3)
+joblib.dump((best_estimators, label_encoder, results_df), 'models.pkl', compress=7)
